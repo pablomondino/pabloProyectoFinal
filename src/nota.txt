@@ -1,0 +1,110 @@
+saque de item list container el use efect y reemplacé
+
+******
+useEffect(() => {
+
+        //***************
+
+        //***************
+        /* va con esto para un productp
+        const productRef= doc(db,"products", "8xPr3d2J2nOFIRitdCBd")
+        getDoc(productRef)
+        .then((snapshot)=>{
+            if (snapshot.exists()){
+                console.log(
+                    {id:snapshot, ...snapshot.data()})
+                    setProducts({id:snapshot, ...snapshot.data()}) 
+            }
+        }*/
+
+
+            // -***esto es para importar varios
+       
+      
+        const productsRef = collection(db, "products")
+        getDocs(productsRef)
+      
+
+
+        .then(snapshot => {
+
+            console.log(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
+           //snapsot,docs va a ser un array con todos los documentos
+            setProducts(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
+
+        })
+
+        .catch(e => console.error(e))
+        .finally(()=>setLoading(false))
+            
+        //para hacer query
+      /*
+        const productsRefFilter = query(
+            collection(db,"products"),
+            where("categoryId", "==", "sillas")
+
+
+
+        )
+        getDocs(productsRefFilter)
+      
+
+
+        .then(snapshot => {
+
+            console.log(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
+            setProducts(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
+
+        })
+
+        .catch(e => console.error(e))
+        */
+
+
+
+
+        /*
+        promesa
+        .then(res => {
+            console.log(res)
+            setProducts(res)
+        })
+        .catch(error => console.error(error.message))
+        */
+        //saco lo que sigue que era para conectar a la api
+        /*
+        fetch('https://fakestoreapi.com/products?limit=9')
+            .then(res=>res.json())
+            .then(json=>{console.log(json)
+                setProducts(json)})
+            .catch(error => console.error(error))
+         */
+
+       /* va con esto para un producto
+        )}
+       */
+            }
+        , [categoryId])
+*****
+
+
+    return(
+        <div className={StyleSheet.container}>
+         {/*estoe es comentario*/}  
+            <h2 className="saludo">{greeting}</h2>
+            {/* 3) Recorrer el array de productos y mostrar nombre y precio */}
+            {products.length > 0 ? (
+                <>
+                {products.map((pr) => <Item key={pr.id} producto={pr} />)}
+                </>
+            ) : (
+                <Spin />
+            )}
+            <>
+            </>
+        </div>
+    )
+}
+
+export default ItemListContainer
+
