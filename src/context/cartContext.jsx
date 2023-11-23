@@ -60,7 +60,7 @@ const CartComponentContext = ({ children }) => {
     //aca agrego numero setNumero y suma
     return (
        
-     <CartContext.Provider value={{ productos, numero, setNumero, suma, addToCart, cartLength: cart.length }}>
+     <CartContext.Provider value={{ productos, numero, setNumero, cart,suma, addToCart, cartLength: cart.length }}>
      {children}
    </CartContext.Provider>
 

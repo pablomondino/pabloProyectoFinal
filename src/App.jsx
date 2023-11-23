@@ -43,6 +43,7 @@ function App() {
           <Route path="/item/:id" element={<ItemDetailConteiner />} />
 
           <Route path="/cart" element={<Cart/>} />
+         {/* <Route path="/cart" element={<Cart />} /> */}
           <Route path="/checkout" element={<Checkout/>} />
 
 
