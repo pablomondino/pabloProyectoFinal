@@ -1,25 +1,56 @@
 import { Button } from "antd"
 import { useEffect, useRef, useState } from "react"
-import {Spin} from 'antd';
+import { Spin } from 'antd';
 import Item from "../item/item";
 import { Link, useParams, } from "react-router-dom";
 //esto estoy agregando
 import { db } from "../../firebase/client";
-import { collection, doc, getDoc, query, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, orderBy, query, where } from "firebase/firestore";
 //import { getDoc } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
 //import { useParams } from "react-router-dom";
 //import { query, where } from "firebase/firestore";
 
 
-const ItemListContainer = ({greeting}) => {
+const ItemListContainer = ({ greeting }) => {
     const [products, setProducts] = useState([])
-   const {nombreCategoria} = useParams()
+    const { nombreCategoria } = useParams()
 
-    const [loding,setLoading]=useState(true)
+    const [loding, setLoading] = useState(true)
 
     console.log(nombreCategoria)
- 
+    // vamos a crear orden de compra
+
+
+    //ESTA ES UNA REFERENCIA A LA COECCION
+
+    const order = {
+        buyer: { name: "pablo", phone: "333333", email: "pablo@gmail.com" },
+        items: [
+            {
+                categoryId: "sillas",
+                description: "silla tablero",
+                imagen: "",
+                price: 5000,
+                stock: 100,
+                title: "silla torneada"
+            }, {
+                categoryId: "sillas",
+                description: "silla tres ondas",
+                imagen: "",
+                price: 5000,
+                stock: 100,
+                title: "silla torneada"
+            }
+        ],
+        total: 10000
+
+    }
+    const crearOrdenDeCompra=()=>{
+
+        const refOrder= collection(db,"orders")
+        addDoc(refOrder, order).then(({id})=>console.log(id))
+    }
 
     // Crear una promise que devuelva un array de productos con el siguiente formato:
     // {name: "producto1", precio: 2000, id: 1}. IMPORTANTE: El ID no puede repetirse
@@ -28,22 +59,22 @@ const ItemListContainer = ({greeting}) => {
     // Cuando el componente se monte hacer la peticion a la promise, guardar la data y mostrarla.
     // NOTA: Mostrar nombre y precio
 
-   // 1) Crear la Promise
+    // 1) Crear la Promise
 
-   /* SACO PROMESA
-    const promesa = new Promise((resolve, reject) => {
-        const productosArray = [
-            {name: "Remera", precio: 20000, id: 1},
-            {name: "Pantalon", precio: 12500, id: 2},
-            {name: "Buzo", precio: 35000, id: 3},
-            {name: "Campera", precio: 55500, id: 4}
-        ]
-
-        setTimeout(() => {
-            productosArray.length > 0 ? resolve(productosArray) : reject({data: [], message: "No hay productos"})
-        }, 5000)
-    })
-*/
+    /* SACO PROMESA
+     const promesa = new Promise((resolve, reject) => {
+         const productosArray = [
+             {name: "Remera", precio: 20000, id: 1},
+             {name: "Pantalon", precio: 12500, id: 2},
+             {name: "Buzo", precio: 35000, id: 3},
+             {name: "Campera", precio: 55500, id: 4}
+         ]
+ 
+         setTimeout(() => {
+             productosArray.length > 0 ? resolve(productosArray) : reject({data: [], message: "No hay productos"})
+         }, 5000)
+     })
+ */
 
     // 2) Llamar a la promise y guardar su resultado... Acuerdense:
     // QUE ESTAN TRABAJANDO CON REACT. 
@@ -64,53 +95,53 @@ const ItemListContainer = ({greeting}) => {
         }*/
 
 
-            // -***esto es para importar varios
+        // -***esto es para importar varios
         const productsRef = nombreCategoria ? query(
-            collection(db,"products"),
+            collection(db, "products"),
             where("categoryId", "==", nombreCategoria)
-    )
-        : collection(db, "products") 
-
-       // const productsRefFilter = 
-
-      
-       
-        getDocs(productsRef)
-      
-
-
-        .then(snapshot => {
-
-            console.log(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
-           //snapsot.docs va a ser un array con todos los documentos
-            setProducts(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
-
-        })
-
-        .catch(e => console.error(e))
-        .finally(()=>setLoading(false))
-            
-        //para hacer query
-      /*
-        const productsRefFilter = query(
-            collection(db,"products"),
-            where("categoryId", "==", "sillas")
         )
+            : collection(db, "products")
+
+        // const productsRefFilter = 
 
 
-        getDocs(productsRefFilter)
-      
+
+        getDocs(productsRef)
 
 
-        .then(snapshot => {
 
-            console.log(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
-            setProducts(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
+            .then(snapshot => {
 
-        })
+                console.log(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+                //snapsot.docs va a ser un array con todos los documentos
+                setProducts(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
 
-        .catch(e => console.error(e))
-        */
+            })
+
+            .catch(e => console.error(e))
+            .finally(() => setLoading(false))
+
+        //para hacer query
+        /*
+          const productsRefFilter = query(
+              collection(db,"products"),
+              where("categoryId", "==", "sillas")
+          )
+  
+  
+          getDocs(productsRefFilter)
+        
+  
+  
+          .then(snapshot => {
+  
+              console.log(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
+              setProducts(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})))
+  
+          })
+  
+          .catch(e => console.error(e))
+          */
 
 
 
@@ -132,28 +163,33 @@ const ItemListContainer = ({greeting}) => {
             .catch(error => console.error(error))
          */
 
-       /* va con esto para un producto
-        )}
-       */
-            }
+        /* va con esto para un producto
+         )}
+        */
+    }
         , [nombreCategoria])
 
 
-    return(
-        <div className={StyleSheet.container}>
-         {/*estoe es comentario*/}  
-            <h2 className="saludo">{greeting}</h2>
-            {/* 3) Recorrer el array de productos y mostrar nombre y precio */}
-            {products.length > 0 ? (
-                <>
-                {products.map((pr) => <Item key={pr.id} producto={pr} />)}
-                </>
-            ) : (
-                <Spin />
-            )}
-            <>
-            </>
-        </div>
+    return (
+        <>
+            <div className={StyleSheet.container}>
+                {/*estoe es comentario*/}
+                <h2 className="saludo">{greeting}</h2>
+                {/* 3) Recorrer el array de productos y mostrar nombre y precio */}
+                {products.length > 0 ? (
+                    <>
+                        {products.map((pr) => <Item key={pr.id} producto={pr} />)}
+                    </>
+                ) : (
+                    <Spin />
+                )}
+
+
+            </div>
+            <div>
+                <button onClick={crearOrdenDeCompra}>Crear orden de compra</button>
+            </div>
+        </>
     )
 }
 
