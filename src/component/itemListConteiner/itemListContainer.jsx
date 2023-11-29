@@ -52,6 +52,9 @@ const ItemListContainer = ({ greeting }) => {
         addDoc(refOrder, order).then(({id})=>console.log(id))
     }
 
+    //voy a tener que guardar en estado =>setOrderId(id) en vez del console log
+
+
     // Crear una promise que devuelva un array de productos con el siguiente formato:
     // {name: "producto1", precio: 2000, id: 1}. IMPORTANTE: El ID no puede repetirse
     // Simular tiempo de espera

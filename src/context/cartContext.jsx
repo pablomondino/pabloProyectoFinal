@@ -33,10 +33,18 @@ const CartComponentContext = ({ children }) => {
 
     const [cart, setCart] = useState([])
 //nuevo
+
+const addToCart = (product, quantity) => {
+    const cartItem = { ...product, quantity };
+    setCart([...cart, cartItem]);
+  };
+
+//--------------------------
+/*
     const addToCart = (product) => {
         setCart([...cart, product]);
       };
-    
+  */  
       const getCart = () => {
         return cart;
       };

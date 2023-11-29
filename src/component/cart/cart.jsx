@@ -12,10 +12,10 @@ const Cart = () => {
 
 
     return (
-
+/*
         <>
-
-            {/*<h1>  CARRITO  Tienda La Pietá </h1>*/}
+        
+           
             <h1>CARRITO Tienda La Pietá</h1>
             {cartLength > 0 ? (
                 <ul>
@@ -32,6 +32,21 @@ const Cart = () => {
 
 
         </>
+        */
+        <>
+        <h1>CARRITO Tienda La Pietá</h1>
+        {cartLength > 0 ? (
+          <ul>
+            {cart.map((cartItem, index) => (
+              <li key={index}>
+                {cartItem.title} - ${cartItem.price} - Cantidad: {cartItem.quantity}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>El carrito está vacío.</p>
+        )}
+      </>
     )
 
 }
