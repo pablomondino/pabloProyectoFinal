@@ -33,13 +33,38 @@ const CartComponentContext = ({ children }) => {
 
     const [cart, setCart] = useState([])
 //nuevo
-
+/*
 const addToCart = (product, quantity) => {
     const cartItem = { ...product, quantity };
     setCart([...cart, cartItem]);
   };
-
+*/
 //--------------------------
+
+//nuevo 1
+const addToCart = (product, quantity) => {
+    const existingCartItemIndex = cart.findIndex((item) => item.id === product.id);
+
+    if (existingCartItemIndex !== -1) {
+      // El producto ya está en el carrito, actualiza la cantidad
+      const updatedCart = [...cart];
+      updatedCart[existingCartItemIndex].quantity += quantity;
+      setCart(updatedCart);
+    } else {
+      // El producto no está en el carrito, agrégalo
+      const cartItem = { ...product, quantity };
+      setCart([...cart, cartItem]);
+    }
+  };
+
+
+
+
+//---------
+
+
+
+
 /*
     const addToCart = (product) => {
         setCart([...cart, product]);
