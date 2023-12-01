@@ -2,17 +2,17 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import NavBar from './component/navBar/navBar1'
+//import NavBar from './component/navBar/navBar'
 import ItemListContainer from './component/itemListConteiner/itemListContainer'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Bienvenida from './component/bienvenida/bienvenida'
 import NotFound from './component/notFound/notFound'
 import ItemDetailConteiner from './component/itemDetailContainer/itemDetailContainer'
 import Cart from './component/cart/cart'
-import NavBar1 from './component/navbar1/navbar1'
+//import NavBar1 from './component/navbar1/navbar1'
 import  CartComponentContext  from './context/cartContext'
-
-
+import NavBar from './component/navBar/navBar'
+import NavBar1 from './component/navbar1/navbar1'
 import Checkout from './component/checkout/chechout'
 
 //import { CartComponentContext } from './context/cartComponentContext';

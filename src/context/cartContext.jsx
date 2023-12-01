@@ -86,6 +86,18 @@ const addToCart = (product, quantity) => {
         setNumero(numero + 1)
     }
 
+    //----------------------------------
+    
+    
+    //arego nuevo para calcular total
+
+    const calcularTotalCompra = () => {
+        return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+      };
+
+
+
+    //---------------------------------
 
     useEffect(() => {
         setProductos(mockProductos)
@@ -93,7 +105,7 @@ const addToCart = (product, quantity) => {
     //aca agrego numero setNumero y suma
     return (
        
-     <CartContext.Provider value={{ productos, numero, setNumero, cart,suma, addToCart, cartLength: cart.length }}>
+     <CartContext.Provider value={{ productos, numero, setNumero, cart, suma, calcularTotalCompra, addToCart, cartLength: cart.length }}>
      {children}
    </CartContext.Provider>
 
