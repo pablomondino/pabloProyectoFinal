@@ -13,9 +13,13 @@ import Cart from './component/cart/cart'
 import  CartComponentContext  from './context/cartContext'
 import NavBar from './component/navBar/navBar'
 import NavBar1 from './component/navbar1/navbar1'
-import Checkout from './component/checkout/chechout'
+import Checkout from './component/checkout/checkout'
 
 //import { CartComponentContext } from './context/cartComponentContext';
+
+import ThankYou from './component/thankYou/thankYou'
+
+
 function App() {
   const [count, setCount] = useState(0)
   //    <ItemListContainer greeting="Bienvenido a Tienda La Pietá"/>
@@ -45,7 +49,7 @@ function App() {
           <Route path="/cart" element={<Cart/>} />
          {/* <Route path="/cart" element={<Cart />} /> */}
           <Route path="/checkout" element={<Checkout/>} />
-
+          <Route path="/thank-you/:orderId" element={<ThankYou />} />
 
           <Route exact path="*" element={<NotFound />} />
 
