@@ -48,7 +48,9 @@ function App() {
 
           <Route path="/cart" element={<Cart/>} />
          {/* <Route path="/cart" element={<Cart />} /> */}
+          
           <Route path="/checkout" element={<Checkout/>} />
+          
           {/*<Route path="/thank-you/:orderId" element={<ThankYou />} />*/}
           <Route path="/confirmacion/:orderId" element={<ThankYou />} />
           <Route exact path="*" element={<NotFound />} />

@@ -6,7 +6,11 @@ import { useParams } from "react-router-dom"
 import { db } from "../../firebase/client"
 
 import { CartContext } from '../../context/cartContext';
+
+import { useNavigate } from 'react-router-dom';
+
 const ItemDetailContainer = () => {
+    const navigate = useNavigate();
     
     const {id} =useParams()
     const [producto,setProducto]= useState()
@@ -49,13 +53,17 @@ const decrementarCantidad = () => {
 };
 
 const agregarAlCarrito = () => {
+    
     // Lógica para agregar el producto al carrito con la cantidad seleccionada
     // ...
      // Verifica si el producto y la cantidad son válidos antes de agregar al carrito
      if (producto && cantidad > 0) {
         addToCart(producto, cantidad);
         // Puedes agregar un mensaje de éxito o redirigir al usuario a la página del carrito
-};
+        setMostrarCarrito(true);
+      navigate('/cart'); // Redirige al usuario al carrito después de agregar al carrito
+
+    };
 };
 return (
     <div>
