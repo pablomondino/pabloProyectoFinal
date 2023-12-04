@@ -32,7 +32,7 @@ const Item = ({ producto }) => {
       <p>{producto.title}</p>
       <p>{producto.description}</p>
       <p>Precio: ${producto.price}</p>
-      <p>{numero}</p>
+     
       <p>Cantidad: {cantidad}</p>
       <p>Total: ${calcularTotal()}</p>
       <img src={producto.image} alt="" style={{ width: '200px', height: 'auto' }} />

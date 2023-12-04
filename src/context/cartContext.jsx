@@ -32,7 +32,12 @@ const CartComponentContext = ({ children }) => {
     const [productos, setProductos] = useState([])
 
     const [cart, setCart] = useState([])
-
+    
+    //agrego para calcular cantidad productos
+    const calcularCantidadTotal = () => {
+        return cart.reduce((total, item) => total + item.quantity, 0);
+      };
+    
     
 //nuevo
 /*
@@ -115,7 +120,7 @@ const addToCart = (product, quantity) => {
     //aca agrego numero setNumero y suma
     return (
        
-     <CartContext.Provider value={{ productos, numero, setNumero, cart, limpiarProductos, limpiarCarrito, suma, calcularTotalCompra, addToCart, cartLength: cart.length }}>
+     <CartContext.Provider value={{ productos, numero, setNumero, cart, limpiarProductos, limpiarCarrito, suma, calcularTotalCompra,cartLength: calcularCantidadTotal(), addToCart }}>
      {children}
    </CartContext.Provider>
 

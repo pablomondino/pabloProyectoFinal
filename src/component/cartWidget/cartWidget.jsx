@@ -18,6 +18,7 @@ const CartWitget = () => {
     // para consumir context -----AGREGUE NUMERO EN EL COUNTERMAS ABAJO******
     //const{numero}=useContext(CartContext)
     const { cartLength } = useContext(CartContext);
+    //const { cartLength } = useContext(CartContext);
     return (
         <>
             <Badge count={cartLength}>
