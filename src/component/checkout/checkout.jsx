@@ -13,6 +13,9 @@ import { useContext, useState } from 'react';
 import { CartContext } from '../../context/cartContext';
 //import { useHistory } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase/client";
+
 
 const Checkout = () => {
     //const history = useHistory();
@@ -30,6 +33,8 @@ const Checkout = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+
+    /*
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -60,7 +65,36 @@ const Checkout = () => {
 
     //------hasta aca
 
-
+    */
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+      
+        const order = {
+          buyer: {
+            name: formData.name,
+            email: formData.email,
+            address: formData.address,
+          },
+          items: cart.map((item) => ({
+            categoryId: item.categoryId,
+            description: item.description,
+            price: item.price,
+            quantity: item.quantity,
+            title: item.title,
+          })),
+          total: calcularTotalCompra(),
+        };
+      
+        try {
+          const orderRef = await addDoc(collection(db, "orders"), order);
+          const orderId = orderRef.id;
+      
+          // Puedes redirigir al usuario a la página de agradecimiento con el orderId
+          navigate(`/confirmacion/${orderId}`);
+        } catch (error) {
+          console.error("Error al crear la orden:", error);
+        }
+      };
 
     return (
         /*

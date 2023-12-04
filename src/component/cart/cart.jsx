@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 //const Cart = () => {
 const Cart = () => {
     const { cart, cartLength, calcularTotalCompra } = useContext(CartContext);
-   
 
    //comente estosaque esto de aca
     
