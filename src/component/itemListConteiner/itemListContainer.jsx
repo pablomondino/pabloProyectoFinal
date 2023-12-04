@@ -189,9 +189,8 @@ const ItemListContainer = ({ greeting }) => {
 
 
             </div>
-            <div>
-                <button onClick={crearOrdenDeCompra}>Crear orden de compra</button>
-            </div>
+            
+            
         </>
     )
 }

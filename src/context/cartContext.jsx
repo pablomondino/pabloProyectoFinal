@@ -32,6 +32,8 @@ const CartComponentContext = ({ children }) => {
     const [productos, setProductos] = useState([])
 
     const [cart, setCart] = useState([])
+
+    
 //nuevo
 /*
 const addToCart = (product, quantity) => {
@@ -78,9 +80,17 @@ const addToCart = (product, quantity) => {
 
     //agregue
     const [numero, setNumero] = useState([2])
+
     const limpiarProductos = () => {
-        setProductos([])
-    }
+        setProductos([]);
+      };
+    
+      const limpiarCarrito = () => {
+        setCart([]);
+      };
+
+
+    
     //agrego funcion
     const suma = () => {
         setNumero(numero + 1)
@@ -105,7 +115,7 @@ const addToCart = (product, quantity) => {
     //aca agrego numero setNumero y suma
     return (
        
-     <CartContext.Provider value={{ productos, numero, setNumero, cart, suma, calcularTotalCompra, addToCart, cartLength: cart.length }}>
+     <CartContext.Provider value={{ productos, numero, setNumero, cart, limpiarProductos, limpiarCarrito, suma, calcularTotalCompra, addToCart, cartLength: cart.length }}>
      {children}
    </CartContext.Provider>
 

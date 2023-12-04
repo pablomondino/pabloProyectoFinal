@@ -21,7 +21,8 @@ const Checkout = () => {
     //const history = useHistory();
     const navigate = useNavigate();
     // agrego 
-    const { cart, calcularTotalCompra } = useContext(CartContext);
+    const { cart, calcularTotalCompra, limpiarCarrito } = useContext(CartContext);
+    //const { cart, calcularTotalCompra } = useContext(CartContext);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -88,6 +89,19 @@ const Checkout = () => {
         try {
           const orderRef = await addDoc(collection(db, "orders"), order);
           const orderId = orderRef.id;
+          
+          limpiarCarrito();
+          setFormData({
+            name: '',
+            email: '',
+            address: '',
+          });
+
+
+
+
+
+
       
           // Puedes redirigir al usuario a la página de agradecimiento con el orderId
           navigate(`/confirmacion/${orderId}`);
