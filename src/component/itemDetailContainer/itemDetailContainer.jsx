@@ -9,6 +9,8 @@ import { CartContext } from "../../context/cartContext";
 
 import { useNavigate } from "react-router-dom";
 
+import "../../App.css";
+
 const ItemDetailContainer = () => {
   const navigate = useNavigate();
 
@@ -60,19 +62,19 @@ const ItemDetailContainer = () => {
     }
   };
   return (
-    <div>
-      <h3>{producto?.title}</h3>
-      <p>{producto?.description}</p>
-      <img
-        src={producto?.image}
-        alt=""
-        style={{ width: "300px", height: "auto" }}
-      />
-      <p>Cantidad: {cantidad}</p>
-      <button onClick={decrementarCantidad}>-</button>
-      <button onClick={incrementarCantidad}>+</button>
-      <button onClick={agregarAlCarrito}>Agregar al Carrito</button>
-    </div>
+    <div className="item-detail-container">
+    <h3>{producto?.title}</h3>
+    <p>{producto?.description}</p>
+    <img
+      src={producto?.image}
+      alt=""
+      style={{ width: "300px", height: "auto" }}
+    />
+    <p>Cantidad: {cantidad}</p>
+    <button onClick={decrementarCantidad}>-</button>
+    <button onClick={incrementarCantidad}>+</button>
+    <button onClick={agregarAlCarrito}>Agregar al Carrito</button>
+  </div>
   );
 };
 

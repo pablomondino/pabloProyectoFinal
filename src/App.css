@@ -40,3 +40,75 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+
+/***************************************/
+
+
+
+
+/* Agrego estilos para aplicar*/
+
+
+.product-container {
+  border: 2px solid #3498db; /* Color del borde */
+  background-color: #ecf0f1; /* Color de fondo */
+  padding: 10px; /* Añade espacio alrededor del producto */
+  margin-bottom: 10px; /* Añade margen inferior entre productos */
+}
+
+.product-image {
+  width: 200px;
+  height: auto;
+}
+
+.product-details {
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #e74c3c; /* Color del precio */
+}
+
+.product-quantity {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.product-total {
+  font-weight: bold;
+  color: #2ecc71; /* Color del total */
+}
+
+.product-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.product-buttons button {
+  background-color: #3498db; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.product-buttons button:hover {
+  background-color: #2980b9; /* Cambia el color de fondo al pasar el mouse */
+}
+
+
+
+/* estilo para item detail container  */
+
+.item-detail-container {
+  background-color: #3498db; /* Color de fondo más fuerte */
+  color: #fff; /* Color del texto */
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
